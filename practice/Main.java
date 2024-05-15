@@ -8,37 +8,52 @@ public class Main {
         Player player = new Player();
         Enemy enemy = new Enemy();
         player.attack(enemy);
-        
+        for (int i = 0; player.getHp() <= 0 || enemy.getHP() <= 0; i++) {
+
+        }
         // enemy.attack(10);
-    
+
         /* 作成条件 */
         /*
-            コマンドラインからコマンドを入力し、プレイヤーがエネミーと戦うプログラム。
-            処理の正常終了条件は以下
-                １．プレイヤーかエネミーのどちらかのhpが0になる
-                ２．プレイヤーがエネミーから逃げるのに成功
-            また、以下のクラスを作成すること
-                ・Playerクラス
-                ・Enemyクラス
-         */ 
+         * コマンドラインからコマンドを入力し、プレイヤーがエネミーと戦うプログラム。
+         * 処理の正常終了条件は以下
+         * １．プレイヤーかエネミーのどちらかのhpが0になる
+         * ２．プレイヤーがエネミーから逃げるのに成功
+         * また、以下のクラスを作成すること
+         * ・Playerクラス
+         * ・Enemyクラス
+         */
 
     }
 }
-class Player{
-    private int hp;
+
+class Player {
+    private int hp = 100;
     private int attack = 10;
-    void attack(Enemy enemy){
-        enemy.hp = enemy.hp - attack;  // point
-        if(enemy.hp <= 0){  // point
+
+    void attack(Enemy enemy) {
+        enemy.updateHP(enemy.getHP() - attack);
+        if (enemy.getHP() <= 0) { // point
             System.out.println("プレイヤーの勝利です");
         }
+    }
 
+    int getHp() {
+        return hp;
     }
 
     // void escape()
 
-
 }
-class Enemy{
-    int hp;
+
+class Enemy {
+    private int hp = 100;
+
+    void updateHP(int newHp) {
+        this.hp = newHp;
+    }
+
+    int getHP() {
+        return hp;
+    }
 }
