@@ -8,8 +8,11 @@ public class Main {
         Player player = new Player();
         Enemy enemy = new Enemy();
         player.attack(enemy);
+        enemy.attack(player);
         for (int i = 0; player.getHp() <= 0 || enemy.getHP() <= 0; i++) {
-
+        if (enemy.getHP() <= 0) { // point
+            System.out.println("プレイヤーの勝利です");
+        }
         }
         // enemy.attack(10);
 
@@ -29,13 +32,10 @@ public class Main {
 
 class Player {
     private int hp = 100;
-    private int attack = 10;
+    private int power = 10;
 
     void attack(Enemy enemy) {
-        enemy.updateHP(enemy.getHP() - attack);
-        if (enemy.getHP() <= 0) { // point
-            System.out.println("プレイヤーの勝利です");
-        }
+        enemy.updateHP(enemy.getHP() - power);
     }
 
     int getHp() {
@@ -48,6 +48,11 @@ class Player {
 
 class Enemy {
     private int hp = 100;
+    private int power = 10;
+
+    void attack(Player player) {
+        player.updateHP(player.getHP() - power);
+    }
 
     void updateHP(int newHp) {
         this.hp = newHp;
