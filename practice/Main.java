@@ -10,9 +10,23 @@ public class Main {
         player.attack(enemy);
         enemy.attack(player);
         for (int i = 0; player.getHp() <= 0 || enemy.getHP() <= 0; i++) {
+            int command = CommandScaner.ScanCommandNumber();
+
+            if (command == 2) {
+                if (player.getSpeed() > enemy.getSpeed()) {
+                    System.out.println("プレイヤーは逃げ出した");
+                    break;
+                } else {
+                    System.out.println("プレイヤーは逃げ出すことができなかった");
+                }
+            }
+
+        }
+
         if (enemy.getHP() <= 0) { // point
             System.out.println("プレイヤーの勝利です");
-        }
+        } else if (player.getHp() <= 0) {
+            System.out.println("エネミーの勝利です");
         }
         // enemy.attack(10);
 
@@ -33,9 +47,18 @@ public class Main {
 class Player {
     private int hp = 100;
     private int power = 10;
+    private int speed = 50;
 
     void attack(Enemy enemy) {
         enemy.updateHP(enemy.getHP() - power);
+    }
+
+    void updateHP(int newHp) {
+        this.hp = newHp;
+    }
+
+    int getSpeed() {
+        return speed;
     }
 
     int getHp() {
@@ -49,13 +72,18 @@ class Player {
 class Enemy {
     private int hp = 100;
     private int power = 10;
+    private int speed = 40;
 
     void attack(Player player) {
-        player.updateHP(player.getHP() - power);
+        player.updateHP(player.getHp() - power);
     }
 
     void updateHP(int newHp) {
         this.hp = newHp;
+    }
+
+    int getSpeed() {
+        return speed;
     }
 
     int getHP() {
