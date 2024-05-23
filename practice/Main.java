@@ -21,6 +21,11 @@ public class Main {
                 }
             }
 
+            if(command == 1){
+                
+            }
+            // 5/23 command == 1（戦う）処理を作成する
+
         }
 
         if (enemy.getHP() <= 0) { // point
@@ -28,6 +33,8 @@ public class Main {
         } else if (player.getHp() <= 0) {
             System.out.println("エネミーの勝利です");
         }
+
+
         // enemy.attack(10);
 
         /* 作成条件 */
