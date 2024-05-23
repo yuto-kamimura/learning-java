@@ -13,7 +13,7 @@ public class Common {
 
     static final int battleFinish = 1;
     static final int battleContinue = 2;
-    static final int battlePlayerPowerUP = 3;
+    static final int battlePlayerPowerUp = 3;
 
     static boolean canEscape(int offset) {
         Random random = new Random();

@@ -10,7 +10,7 @@ public class MyClass {
     static void battle(Player player, Enemy enemy) {
         while (true) {
             int action = player.action(enemy);
-            if (action == Common.battlePlayerPowerUP) {
+            if (action == Common.battlePlayerPowerUp) {
                 player = new SuperPlayer("スーパープレイヤー");
             }
 

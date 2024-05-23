@@ -27,7 +27,7 @@ public class Player {
                     }
                     break;
                 case Common.powerUpCommand:
-                    return Common.battlePlayerPowerUP;
+                    return Common.battlePlayerPowerUp;
                 default:
                     System.out.println("プレイヤーは何もしなかった!");
                     return Common.battleContinue;
