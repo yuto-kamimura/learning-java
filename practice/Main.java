@@ -7,9 +7,8 @@ public class Main {
         // System.out.println(command);
         Player player = new Player();
         Enemy enemy = new Enemy();
-        player.attack(enemy);
-        enemy.attack(player);
-        for (int i = 0; player.getHp() <= 0 || enemy.getHP() <= 0; i++) {
+        
+        for (int i = 0; player.getHp() > 0 || enemy.getHP() > 0; i++) {
             int command = CommandScaner.ScanCommandNumber();
 
             if (command == 2) {
@@ -23,6 +22,8 @@ public class Main {
 
             if(command == 1){
                 
+                System.out.println("プレイヤーはエネミーに" + player.getPower() + "ダメージ与えた");
+                System.out.println("エネミーの体力は残り" + enemy.getHP());
             }
             // 5/23 command == 1（戦う）処理を作成する
 
@@ -52,7 +53,7 @@ public class Main {
 }
 
 class Player {
-    private int hp = 100;
+    private int hp = 100; 
     private int power = 10;
     private int speed = 50;
 
@@ -70,6 +71,9 @@ class Player {
 
     int getHp() {
         return hp;
+    }
+    int getPower(){
+        return power;
     }
 
     // void escape()
