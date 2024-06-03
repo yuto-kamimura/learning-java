@@ -31,6 +31,8 @@ public class Main {
             if (command == 1) {
                 // 以下にプレイヤーが攻撃する処理を書く
 
+                System.out.println("プレイヤーはエネミーに攻撃した" );
+                player.attack(enemy);
                 System.out.println("プレイヤーはエネミーに" + player.getPower() + "ダメージ与えた");
                 System.out.println("エネミーの体力は残り" + enemy.getHP());
             }
