@@ -16,7 +16,7 @@ public class Main {
         Player player = new Player();
         Enemy enemy = new Enemy();
 
-        for (int i = 0; player.getHp() > 0 || enemy.getHP() > 0; i++) {
+        for (int i = 0; player.getHp() > 0 && enemy.getHp() > 0; i++) {
             int command = CommandScaner.ScanCommandNumber();
 
             if (command == 2) {
@@ -29,23 +29,26 @@ public class Main {
             }
 
             if (command == 1) {
-                // 以下にプレイヤーが攻撃する処理を書く
-
                 System.out.println("プレイヤーはエネミーに攻撃した" );
                 player.attack(enemy);
                 System.out.println("プレイヤーはエネミーに" + player.getPower() + "ダメージ与えた");
-                System.out.println("エネミーの体力は残り" + enemy.getHP());
+                System.out.println("エネミーの体力は残り" + enemy.getHp());
+                if(enemy.getHp() <= 0){
+                    System.out.println("プレイヤーの勝利です");
+                    break;
+                }
             }
-            // 5/23 command == 1（戦う）処理を作成する
 
+            // エネミーの攻撃を実装する
+            enemy.attack(player);
+            System.out.println("エネミーはプレイヤーに攻撃した");
+            System.out.println("エネミーはプレイヤーに" + enemy.getPower() + "ダメージ与えた");
+            System.out.println("プレイヤーの体力は残り" + player.getHp());
+            if (player.getHp() <= 0) {
+                System.out.println("エネミーの勝利です");
+                break;
+            }
         }
-
-        if (enemy.getHP() <= 0) { // point
-            System.out.println("プレイヤーの勝利です");
-        } else if (player.getHp() <= 0) {
-            System.out.println("エネミーの勝利です");
-        }
-
     }
 }
 
@@ -55,7 +58,7 @@ class Player {
     private int speed = 50;
 
     void attack(Enemy enemy) {
-        enemy.updateHP(enemy.getHP() - power);
+        enemy.updateHp(enemy.getHp() - power);
     }
 
     void updateHP(int newHp) {
@@ -87,7 +90,7 @@ class Enemy {
         player.updateHP(player.getHp() - power);
     }
 
-    void updateHP(int newHp) {
+    void updateHp(int newHp) {
         this.hp = newHp;
     }
 
@@ -95,7 +98,10 @@ class Enemy {
         return speed;
     }
 
-    int getHP() {
+    int getHp() {
         return hp;
+    }
+    int getPower(){
+        return power;
     }
 }
