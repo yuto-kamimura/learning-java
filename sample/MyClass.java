@@ -9,18 +9,35 @@ public class MyClass {
 
     static void battle(Player player, Enemy enemy) {
         while (true) {
+            System.out.println("\nプレイヤーのターン");
             int action = player.action(enemy);
-            if (action == Common.battlePlayerPowerUp) {
-                player = new SuperPlayer("スーパープレイヤー");
+
+            switch (action) {
+                case Common.battlePlayerPowerUp:
+                    player = new SuperPlayer("スーパープレイヤー");
+                    break;
+                case Common.battleAttack:
+                    System.out.println(player.getName() + "の攻撃!");
+                    break;
+                case Common.battleEscape:
+                    System.out.println("変身!!");
+                    System.out.println("プレイヤーはスーパープレイヤーとなった");
+                    break;
+                case Common.battleNoAction:
+                    break;
+                case Common.battleFinish:
+                    break;
+
+                default:
+                    break;
             }
 
-            
             if (enemy.isElemenated()) {
                 break;
             }
 
             Time.timeSleep(1000);
-            System.out.println("敵のターン");
+            System.out.println("\n敵のターン");
             enemy.attack(player);
             if (player.isElemenated()) {
                 break;

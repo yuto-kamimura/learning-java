@@ -13,24 +13,24 @@ public class Player {
     }
 
     int action(Enemy enemy) {
-        System.out.println("プレイヤーのターン");
-        System.out.println("コマンドを入力してください。1:戦う, 2:逃げる");
+        System.out.println("コマンドを入力してください。1:戦う, 2:逃げる, 3:自己強化, それ以外:何もしない");
         try {
             int command = CommandScaner.ScanCommandNumber();
             switch (command) {
                 case Common.attackCommand:
                     this.attack(enemy);
-                    return Common.battleContinue;
+                    return Common.battleAttack;
                 case Common.escapeCommand:
                     if (this.escape(enemy)) {
-                        return Common.battleContinue;
+                        return Common.battleEscape;
                     }
                     break;
                 case Common.powerUpCommand:
+
                     return Common.battlePlayerPowerUp;
                 default:
                     System.out.println("プレイヤーは何もしなかった!");
-                    return Common.battleContinue;
+                    return Common.battleNoAction;
             }
         }catch (NumberFormatException ex){
             ex.printStackTrace();
@@ -60,9 +60,7 @@ public class Player {
         }
     }
 
-    int getSpeed() {
-        return this.speed;
-    }
+
 
     boolean escape(Enemy enemy) {
         if (Common.canEscape(this.speed - enemy.getSpeed())   ) {
@@ -76,6 +74,14 @@ public class Player {
 
     void printPlayerInfo(){
         System.out.println(name + ":" + "残りhp: " + hp);
+    }
+
+    int getSpeed() {
+        return this.speed;
+    }
+
+    int getPower() {
+        return this.power;
     }
 
     String getName() {
