@@ -12,32 +12,8 @@ public class Player {
         this.name = name;
     }
 
-    int action(Enemy enemy) {
+    void printActionCommand() {
         System.out.println("コマンドを入力してください。1:戦う, 2:逃げる, 3:自己強化, それ以外:何もしない");
-        try {
-            int command = CommandScaner.ScanCommandNumber();
-            switch (command) {
-                case Common.attackCommand:
-                    this.attack(enemy);
-                    return Common.battleAttack;
-                case Common.escapeCommand:
-                    if (this.escape(enemy)) {
-                        return Common.battleEscape;
-                    }
-                    break;
-                case Common.powerUpCommand:
-
-                    return Common.battlePlayerPowerUp;
-                default:
-                    System.out.println("プレイヤーは何もしなかった!");
-                    return Common.battleNoAction;
-            }
-        }catch (NumberFormatException ex){
-            ex.printStackTrace();
-        }catch (Exception ex) {
-            ex.printStackTrace();
-        } 
-        return Common.battleFinish;
     }
 
     void getDamage(int damage) {
@@ -46,30 +22,15 @@ public class Player {
     }
 
     void attack(Enemy enemy) {
-        System.out.println(this.name + "の攻撃!");
         enemy.getDamage(this.power);
     }
 
     boolean isElemenated() {
-        if (this.hp <= 0) {
-            System.out.println(this.name + "は倒れた");
-            return true;
-        } else {
-            printPlayerInfo();
-            return false;
-        }
+        return this.hp <= 0;
     }
 
-
-
     boolean escape(Enemy enemy) {
-        if (Common.canEscape(this.speed - enemy.getSpeed())   ) {
-            System.out.println(this.name + "は逃げることに成功した!");
-            return true;
-        } else {
-            System.out.println(this.name + "は逃げられなかった!");
-            return false;
-        }
+        return Common.canEscape(this.speed - enemy.getSpeed());
     }
 
     void printPlayerInfo(){

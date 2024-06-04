@@ -8,41 +8,52 @@ public class MyClass {
     }
 
     static void battle(Player player, Enemy enemy) {
-        while (true) {
+        loop: while (true) {
             System.out.println("\nプレイヤーのターン");
-            int action = player.action(enemy);
+            player.printActionCommand();
+            int command = CommandScaner.ScanCommandNumber();
 
-            switch (action) {
-                case Common.battlePlayerPowerUp:
-                    player = new SuperPlayer("スーパープレイヤー");
-                    break;
-                case Common.battleAttack:
-                    System.out.println(player.getName() + "の攻撃!");
-                    break;
-                case Common.battleEscape:
+            switch (command) {
+                case Common.powerUpCommand:
                     System.out.println("変身!!");
                     System.out.println("プレイヤーはスーパープレイヤーとなった");
+                    player = new SuperPlayer("スーパープレイヤー");
                     break;
-                case Common.battleNoAction:
+                case Common.attackCommand:
+                    System.out.println(player.getName() + "の攻撃!");
+                    player.attack(enemy);
                     break;
-                case Common.battleFinish:
-                    break;
-
+                case Common.escapeCommand:
+                    if (player.escape(enemy)) {
+                        System.out.println(player.getName() + "は逃げることに成功した!");
+                        break loop;
+                    } else {
+                        System.out.println(player.getName() + "は逃げきれなかった！");
+                        break;
+                    }
                 default:
+                    System.out.println("プレイヤーは何もしなかった!");
                     break;
             }
 
             if (enemy.isElemenated()) {
+                System.out.println(enemy.getName() + "は倒れた");
                 break;
             }
 
-            Time.timeSleep(1000);
+            Time.timeSleep(2000);
+
             System.out.println("\n敵のターン");
+            System.out.println(enemy.getName() + "の攻撃!");
             enemy.attack(player);
             if (player.isElemenated()) {
+                System.out.println(player.getName() + "は倒れた");
                 break;
+            } else {
+                player.printPlayerInfo();
             }
-            Time.timeSleep(1000);
+
+            Time.timeSleep(2000);
         }
         System.out.println("戦闘が終了した。");
     }

@@ -9,33 +9,17 @@ public class SuperPlayer extends Player {
     }
 
     @Override
-    int action(Enemy enemy) {
+    void printActionCommand() {
         System.out.println("コマンドを入力してください。1:戦う, 2:逃げる, それ以外:何もしない");
-        try {
-            int command = CommandScaner.ScanCommandNumber();
-            switch (command) {
-                case Common.attackCommand:
-                    this.attack(enemy);
-                    return Common.battleAttack;
-                case Common.escapeCommand:
-                    if (this.escape(enemy)) {
-                        return Common.battleEscape;
-                    }
-                    break;
-                default:
-                    return Common.battleNoAction;
-            }
-        }catch (NumberFormatException ex){
-            ex.printStackTrace();
-        }catch (Exception ex) {
-            ex.printStackTrace();
-        } 
-        return Common.battleFinish;
+    }
+
+    void printAttackCommand() {
+        System.out.println("1:物理攻撃, 2:魔法攻撃, それ以外:何もしない");
     }
 
     @Override
     void attack(Enemy enemy) throws NumberFormatException {
-        System.out.println("1:物理攻撃, 2:魔法攻撃, それ以外:戻る");
+        printAttackCommand();
         switch (CommandScaner.ScanCommandNumber()) {
             case Common.attackCommand:
                 physicalAttack(enemy);
@@ -44,7 +28,7 @@ public class SuperPlayer extends Player {
                 magicAttack(enemy);
                 break;
             default:
-                action(enemy);
+                break;
         }
     }
 

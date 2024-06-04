@@ -19,22 +19,23 @@ public class Enemy {
     }
 
     void attack(sample.Player player) {
-        System.out.println(this.name + "の攻撃!");
         player.getDamage(this.power);
     }
 
     boolean isElemenated() {
-        if (this.hp <= 0) {
-            System.out.println(name + "は倒れた");
-            return true;
-        } else {
-            System.out.println(name + "の残りHP:" + this.hp);
-            return false;
-        }
+        return this.hp <= 0;
     }
 
     int getSpeed() {
         return this.speed;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    void printEnemyInfo() {
+        System.out.println(name + "の残りHP:" + this.hp);
     }
 
 }
