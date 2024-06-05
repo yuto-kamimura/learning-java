@@ -80,10 +80,14 @@ class Player {
     // void escape()
 
 }
+class SuperHero extends Player{
+    private int magic = 10;
+
+}
 
 class Enemy {
     private int hp = 100;
-    private int power = 10;
+    private int power = 20;
     private int speed = 40;
 
     void attack(Player player) {

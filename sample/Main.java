@@ -4,15 +4,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            Map<String, Integer> scoreMap = new HashMap<>();
-            if (scoreMap.isEmpty()) {
-                throw new Exception();
-            }
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        System.out.println(input);
 
-            System.out.println("test1");
-        } catch (Exception e) {
-            System.out.println("error");
-        }
+        String input2 = scanner.nextLine();
+        System.out.println(input2);
     }
 }
