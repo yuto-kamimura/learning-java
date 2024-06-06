@@ -38,6 +38,10 @@ public class Main {
                     break;
                 }
             }
+            if(command == 3){
+                SuperHero hero = new SuperHero();
+                hero.attack(nenemy);
+            }
 
             // エネミーの攻撃を実装する
             enemy.attack(player);
@@ -53,9 +57,9 @@ public class Main {
 }
 
 class Player {
-    private int hp = 100;
-    private int power = 10;
-    private int speed = 50;
+    int hp = 100;
+     int power = 10;
+     int speed = 50;
 
     void attack(Enemy enemy) {
         enemy.updateHp(enemy.getHp() - power);
@@ -82,6 +86,17 @@ class Player {
 }
 class SuperHero extends Player{
     private int magic = 10;
+
+    void attack(Enemy enemy) {
+        super.getPower();
+        enemy.updateHp(enemy.getHp() - super.getPower());
+    }
+    void updateHP(int newHp) {
+        super.updateHp(int HP);
+        HP.hp = newHp;
+    }
+
+
 
 }
 
