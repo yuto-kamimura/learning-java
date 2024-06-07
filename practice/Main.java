@@ -15,6 +15,7 @@ public class Main {
     public static void main(String args[]) {
         Player player = new Player();
         Enemy enemy = new Enemy();
+        SuperHero hero = new SuperHero();
 
         for (int i = 0; player.getHp() > 0 && enemy.getHp() > 0; i++) {
             int command = CommandScaner.ScanCommandNumber();
@@ -39,8 +40,7 @@ public class Main {
                 }
             }
             if(command == 3){
-                SuperHero hero = new SuperHero();
-                hero.attack(nenemy);
+                System.out.println("プレイヤーは変身した!");
             }
 
             // エネミーの攻撃を実装する
@@ -86,15 +86,22 @@ class Player {
 }
 class SuperHero extends Player{
     private int magic = 10;
+    // フィールド変数にpowerとsppedを追加する
 
     void attack(Enemy enemy) {
-        super.getPower();
         enemy.updateHp(enemy.getHp() - super.getPower());
     }
-    void updateHP(int newHp) {
-        super.updateHp(int HP);
-        HP.hp = newHp;
+    void magicAttack(Enemy enemy){
+        enemy.updateHp(enemy.getHp() - getMagicPower());
     }
+    int getMagicPower(){
+        return magic;
+    }
+    SuperHero(){
+        int speed = 100;
+        int power = 30;
+    }
+
 
 
 
