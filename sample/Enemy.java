@@ -1,4 +1,4 @@
-package Practice01Class.kamimura.sample;
+package sample;
 
 public class Enemy {
     private int hp = 32;

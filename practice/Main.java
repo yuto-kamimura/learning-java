@@ -1,4 +1,4 @@
-package Practice01Class.ishida.practice;
+package practice;
 
 /* 作成条件 */
 /*

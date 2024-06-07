@@ -1,4 +1,4 @@
-package Practice01Class.kamimura.sample;
+package sample;
 
 import java.util.Random;
 

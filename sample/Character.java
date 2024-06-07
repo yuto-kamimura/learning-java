@@ -1,4 +1,4 @@
-package Practice01Class.kamimura.sample;
+package sample;
 
 public interface Character {
     public abstract int action(Character character);

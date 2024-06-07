@@ -1,6 +1,6 @@
-package Practice01Class.kamimura.sample;
+package sample;
 
-public class MyClass {
+public class BattleGame {
     public static void main(String args[]) {
         Enemy enemy = new Enemy("ENEMY");
         Player player = new Player("PLAYER");
