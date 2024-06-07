@@ -1,5 +1,5 @@
-package practice;
 
+package Practice01.ishida.practice;
 import java.util.Random;
 
 public class Common {

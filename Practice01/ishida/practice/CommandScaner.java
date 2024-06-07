@@ -1,4 +1,5 @@
-package practice;
+package Practice01.ishida.practice;
+
 import java.util.Scanner;
 
 

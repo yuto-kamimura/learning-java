@@ -1,4 +1,5 @@
 package sample;
+
 import java.util.Scanner;
 
 public class CommandScaner {

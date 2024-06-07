@@ -1,4 +1,4 @@
-package practice;
+package Practice01.ishida.practice;
 
 public class Time {
     void timeSleep(int time) {
