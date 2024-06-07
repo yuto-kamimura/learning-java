@@ -1,4 +1,4 @@
-package sample;
+package Practice01Class.kamimura.sample;
 
 public class SuperPlayer extends Player {
     private int mp = 10;

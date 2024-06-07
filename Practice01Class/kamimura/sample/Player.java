@@ -1,4 +1,4 @@
-package sample;
+package Practice01Class.kamimura.sample;
 
 public class Player {
     private int hp = 10;
@@ -18,7 +18,7 @@ public class Player {
 
     void getDamage(int damage) {
         System.out.println(this.name + "は" + (damage - this.deffence) + "のダメージを受けた!");
-        this.hp -= damage - this.deffence ;
+        this.hp -= damage - this.deffence;
     }
 
     void attack(Enemy enemy) {
@@ -33,7 +33,7 @@ public class Player {
         return Common.canEscape(this.speed - enemy.getSpeed());
     }
 
-    void printPlayerInfo(){
+    void printPlayerInfo() {
         System.out.println(name + ":" + "残りhp: " + hp);
     }
 

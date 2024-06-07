@@ -1,4 +1,4 @@
-package sample;
+package Practice01Class.kamimura.sample;
 
 public class Enemy {
     private int hp = 32;
@@ -18,7 +18,7 @@ public class Enemy {
         this.hp -= damage - this.deffence;
     }
 
-    void attack(sample.Player player) {
+    void attack(Player player) {
         player.getDamage(this.power);
     }
 

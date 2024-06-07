@@ -1,4 +1,4 @@
-package sample;
+package Practice01Class.kamimura.sample;
 
 public class Time {
     static void timeSleep(int millis) {
@@ -9,6 +9,6 @@ public class Time {
             // sleep中に割り込みが発生した場合の処理
             System.err.println("Thread was interrupted!");
         }
-        
+
     }
 }

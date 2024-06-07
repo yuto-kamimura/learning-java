@@ -1,4 +1,4 @@
-package sample;
+package Practice01Class.kamimura.sample;
 
 public class MyClass {
     public static void main(String args[]) {
