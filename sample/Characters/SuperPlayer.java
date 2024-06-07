@@ -1,16 +1,13 @@
-package sample;
+package sample.Characters;
+
+import sample.Objects.CharacterParameter;
+import sample.Utils.CommandScaner;
+import sample.Utils.Common;
 
 public class SuperPlayer extends Player {
-    private int mp = 10;
-    private int magicPower = 15;
 
-    SuperPlayer(String name) {
-        super(name);
-    }
-
-    @Override
-    void printActionCommand() {
-        System.out.println("コマンドを入力してください。1:戦う, 2:逃げる, それ以外:何もしない");
+    public SuperPlayer(String name, CharacterParameter params) {
+        super(name, params);
     }
 
     void printAttackCommand() {
@@ -18,7 +15,7 @@ public class SuperPlayer extends Player {
     }
 
     @Override
-    void attack(Enemy enemy) throws NumberFormatException {
+    public void attack(Enemy enemy) throws NumberFormatException {
         printAttackCommand();
         switch (CommandScaner.ScanCommandNumber()) {
             case Common.attackCommand:
@@ -33,20 +30,12 @@ public class SuperPlayer extends Player {
     }
 
     void magicAttack(Enemy enemy) {
-        mp -= 2;
-        enemy.getDamage(this.magicPower);
+        super.params.mp -= 2;
+        enemy.getDamage(super.params.mp * 10);
     }
 
     void physicalAttack(Enemy enemy) {
         enemy.getDamage(super.getPower());
     }
 
-    @Override
-    void printPlayerInfo() {
-        System.out.println(super.getName() + ":" + "残りhp: " + super.getHP() + "残りmp: " + this.mp);
-    }
-
-    int getMagicPower() {
-        return this.magicPower;
-    }
 }
