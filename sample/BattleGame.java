@@ -4,10 +4,11 @@ import sample.Characters.Enemy;
 import sample.Characters.Player;
 import sample.Characters.SuperPlayer;
 import sample.Objects.CharacterParameter;
+import sample.Utils.Color;
 import sample.Utils.CommandScaner;
 import sample.Utils.Common;
 
-public class MyClass {
+public class BattleGame {
     public static void main(String args[]) {
         CharacterParameter playerParams = new CharacterParameter(100, 16, 5, 30, 0);
         CharacterParameter enemyParams = new CharacterParameter(80, 23, 8, 10, 30);
@@ -18,18 +19,24 @@ public class MyClass {
     }
 
     static void battle(Player player, Enemy enemy) {
+        printCharacterTurn("プレイヤー");
+
         loop: while (true) {
-            System.out.println("\nプレイヤーのターン");
+            System.out.println("コマンド [1. 攻撃 | 2. 逃げる | 3. 自己強化 | その他. さぼり]");
             int command = CommandScaner.ScanCommandNumber();
 
             switch (command) {
                 case Common.powerUpCommand:
-                    System.out.println("変身!!");
-                    System.out.println("プレイヤーはスーパープレイヤーとなった");
-                    player = new SuperPlayer("スーパープレイヤー", player.params);
-                    break;
+                    if (player.isSuperPlayer()) {
+                        System.out.println("これ以上自己強化できない!");
+                        continue loop;
+                    } else {
+                        System.out.println("プレイヤーはスーパープレイヤーとなった");
+                        player = new SuperPlayer("スーパープレイヤー", player.params, 100);
+                        break;
+                    }
                 case Common.attackCommand:
-                    System.out.println(player.getName() + "の攻撃!");
+                    printAttackInfo(player.getName());
                     player.attack(enemy);
                     break;
                 case Common.escapeCommand:
@@ -53,8 +60,8 @@ public class MyClass {
 
             Time.timeSleep(2000);
 
-            System.out.println("\n敵のターン");
-            System.out.println(enemy.getName() + "の攻撃!");
+            printCharacterTurn("敵");
+            printAttackInfo(enemy.getName());
             enemy.attack(player);
             if (player.isElemenated()) {
                 System.out.println(player.getName() + "は倒れた");
@@ -64,18 +71,26 @@ public class MyClass {
             }
 
             Time.timeSleep(2000);
+            printCharacterTurn("プレイヤー");
         }
         System.out.println("戦闘が終了した。");
     }
 
     static void printPlayerInfo(Player player) {
-        System.out.printf("プレイヤーの残りHP: %d", player.params.hp);
-        System.out.printf("プレイヤーの残りMP: %d", player.params.mp);
+        System.out.printf(Color.green + "プレイヤーの残り [HP: %d], [MP: %d] \n" + Color.end, player.params.hp,
+                player.params.mp);
     }
 
     static void printEnemyInfo(Enemy enemy) {
-        System.out.printf("敵の残りHP: %d", enemy.params.hp);
-        System.out.printf("敵の残りMP: %d", enemy.params.mp);
+        System.out.printf(Color.red + "敵の残り [HP: %d], [MP: %d] \n" + Color.end, enemy.params.hp, enemy.params.mp);
     }
-}
 
+    static void printAttackInfo(String name) {
+        System.out.println(name + "の攻撃!");
+    }
+
+    static void printCharacterTurn(String character) {
+        System.out.println("\n" + character + "のターン!");
+    }
+
+}

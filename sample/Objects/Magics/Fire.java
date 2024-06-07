@@ -1,8 +1,13 @@
 package sample.Objects.Magics;
 
 public class Fire implements Magic{
-    private int baseDamage = 10;
-    private int decreaseMpAmount = 5;
+    private final String magicName = "ファイア";
+    private final int baseDamage = 10;
+    private final int decreaseMpAmount = 5;
+
+    public String getMagicName() {
+        return magicName;
+    }
 
     public int getBaseDamage() {
         return this.baseDamage;

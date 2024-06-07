@@ -13,6 +13,7 @@ public class Enemy {
     }
 
     void getDamage(int damage) {
+        System.out.println(this.name + "は" + damage + "ダメージを受けた!");
         this.params.hp -= damage - this.params.deffence;
     }
 
