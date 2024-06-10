@@ -18,8 +18,12 @@ public class Player {
         this.params.hp -= damage - this.params.deffence;
     }
 
-    public void attack(Enemy enemy) {
-        enemy.getDamage(this.params.power);
+    public void attack(Enemy enemy, int damage) {
+        enemy.getDamage(damage);
+    }
+
+    public int getAttackDamage() {
+        return this.params.power;
     }
 
     public boolean isElemenated() {
@@ -34,20 +38,8 @@ public class Player {
         return this.name;
     }
 
-    CharacterParameter getParams() {
+    public CharacterParameter getParams() {
         return this.params;
-    }
-
-    int getSpeed() {
-        return this.params.speed;
-    }
-
-    int getPower() {
-        return this.params.power;
-    }
-
-    int getHP() {
-        return this.params.hp;
     }
 
     void updateParams(CharacterParameter params) {

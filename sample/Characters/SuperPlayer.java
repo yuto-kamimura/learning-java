@@ -26,35 +26,36 @@ public class SuperPlayer extends Player {
     }
 
     void printAttackCommand() {
-        System.out.println("1:物理攻撃, 2:魔法攻撃, それ以外:何もしない");
     }
 
     @Override
-    public void attack(Enemy enemy) throws NumberFormatException {
-        printAttackCommand();
+    public void attack(Enemy enemy, int damage) throws NumberFormatException {
+        enemy.getDamage(damage);
+    }
+
+    @Override
+    public int getAttackDamage() {
         switch (CommandScaner.ScanCommandNumber()) {
             case Common.attackCommand:
-                physicalAttack(enemy);
-                break;
+                return physicalAttack();
             case Common.magicAttack:
-                magicAttack(enemy);
-                break;
+                return magicAttack();
             default:
-                break;
+                return Common.battleNoAction;
         }
     }
 
-    void magicAttack(Enemy enemy) {
+    int magicAttack() {
         Magic m = selectMagic();
 
         int damage = m.getBaseDamage();
         super.params.mp -= m.getDecreaseMpAmount();
 
-        enemy.getDamage(damage);
+        return damage;
     }
 
-    void physicalAttack(Enemy enemy) {
-        enemy.getDamage(this.params.power * 2);
+    int physicalAttack() {
+        return this.params.power * 2;
     }
 
     Magic selectMagic() {

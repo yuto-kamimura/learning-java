@@ -36,8 +36,14 @@ public class BattleGame {
                         break;
                     }
                 case Common.attackCommand:
+                    int damage = 0;
+                    if (player.isSuperPlayer()) {
+                        System.out.println("1:物理攻撃, 2:魔法攻撃, それ以外:何もしない");
+                    } 
+                    damage = player.getAttackDamage();
+
                     printAttackInfo(player.getName());
-                    player.attack(enemy);
+                    player.attack(enemy, damage);
                     break;
                 case Common.escapeCommand:
                     if (player.escape(enemy)) {
